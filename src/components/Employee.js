@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import './Employee.css';
 
 export default function Employee() {
-    const navigate = useNavigate()
     const [posts, setPosts] = useState([]);
 
     const fetchPost = async () => {
@@ -15,22 +13,40 @@ export default function Employee() {
       useEffect(() => {
         fetchPost();
       }, []);
-
+ 
     
     return (
-        <div className="employee-container">
-            {posts.map((posts, index) => (
-                <div key={index}>
-                    <img className="employee-img" src={posts.image} alt={""} />
-                    <p style={{ fontSize: "20px" }}>Position : {posts.email}</p>
-                    <p style={{ fontSize: "15px" }}>Name : {posts.name}</p>
-                    <p style={{ fontSize: "15px" }}>Age :{posts.phone}</p>
-                    <p style={{ fontSize: "15px" }}>Address : {posts.address}</p>
-                    <button className="employee-btnDetails" >ADD</button>
-                    <button className="employee-btnEdit" >EDIT</button>
-                    <button className="employee-btnRemove" >DELETE</button>
-                </div>
-            ))}
+        
+        <div className='Employee'>
+         <h1 className='title'>EMPLOYEE TABLE</h1>
+             <table >
+                 <thead>
+                 <tr>
+                     <th>ID </th>
+                     <th>AVATAR</th>
+                     <th>NAME</th>
+                     <th>EMAIL</th>
+                     <th>PHONE</th>
+                     <th>ADDRESS</th>
+                     <th style={{color: 'yellow'}}>INTERACT</th>
+                 </tr>
+                 </thead>
+            {posts.map((posts, index) => {
+                return(
+                    <tbody>
+                    <tr  key={index}> 
+                    <td>{posts.id}</td>
+                    <td><img src={posts.image} alt={""} /></td>
+                    <td >{posts.name}</td>
+                    <td >{posts.email}</td>
+                    <td >{posts.phone}</td>
+                    <td >{posts.address}</td>
+                    <td ><button >ADD</button> <button >EDIT</button><button >DELETE</button></td >
+                    </tr>
+                    </tbody>
+             
+            )})}
+            </table>
         </div>
     )
 }

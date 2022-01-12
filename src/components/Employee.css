@@ -1,0 +1,46 @@
+
+.Employee {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
+}
+  
+table {
+  border: 2px solid forestgreen;
+  width: 1000px;
+  height: 200px;
+  margin: 0 auto;
+}
+  
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}
+  
+td {
+  text-align: center;
+}
+
+img {
+  width:50px; 
+  height:50px;
+}
+
+title {
+  text-align: center;
+  font-family: arial, sans-serif;
+}
+
+.Employee tr:nth-child(even){background-color: black;}
+
+.Employee tr:hover {background-color: #ddd;}
+
+.Employee td, .Employee th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
