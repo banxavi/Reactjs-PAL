@@ -5,10 +5,12 @@
   border-collapse: collapse;
   border: 3px solid #ddd;
   width: 100%;
+  background: lightcyan no-repeat fixed center; 
+
 }
   
 table {
-  border: 2px solid forestgreen;
+  border: 1px solid forestgreen;
   width: 1000px;
   height: 200px;
   margin: 0 auto;
@@ -43,4 +45,8 @@ title {
 .Employee td, .Employee th {
   border: 1px solid #ddd;
   padding: 8px;
+}
+
+a {
+  padding-left: 800px;
 }

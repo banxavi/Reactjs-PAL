@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -8,14 +10,17 @@ function LoginForm() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
   const [posts, setPosts] = useState([]);
-  const fetchPost = async () => {
-    const response = await fetch("http://127.0.0.1:5000/emp");
-    const data = await response.json();
-    setPosts(data);
+  const axiosPost = async () => {
+    axios.get("http://127.0.0.1:5000/emp")
+      .then(res => {
+        const account = res.data;
+        setPosts(account);
+      })
+      .catch(error => console.log(error));
   };
 
   useEffect(() => {
-    fetchPost();
+    axiosPost();
   }, []);
 
   const submitHandler = (event) => {
