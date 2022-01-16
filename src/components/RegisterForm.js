@@ -2,26 +2,36 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
-function LoginForm() {
+function RegisterForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [repassword, setRePassword] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
   const [posts, setPosts] = useState([]);
+
   const axiosPost = async () => {
-    axios.get("http://127.0.0.1:5000/login")
-      .then(res => {
+    axios
+      .get("http://127.0.0.1:5000/emp")
+      .then((res) => {
         const account = res.data;
         setPosts(account);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   };
-
+  console.log(posts);
   useEffect(() => {
     axiosPost();
   }, []);
+
+  const data_test = {
+    address: "Newyork, USA",
+    email: email,
+    name: "nhatban",
+    password: password,
+    phone: "1234567890",
+  };
 
   const submitHandler = (event) => {
     //Prevent page reload
@@ -29,28 +39,36 @@ function LoginForm() {
 
     let emailValue = email;
     let passwordValue = password;
+    let repasswordValue = repassword;
+    let exists = false;
+
     for (var i = 0; i < posts.length; i++) {
-      if (emailValue === "" || passwordValue === "") {
-        setStatus(false);
-        setMessage("*please type into mandatory fields");
-      } else {
-        if (
-          emailValue === posts[i].email &&
-          passwordValue === posts[i].password
-        ) {
-          setStatus(true);
-          setMessage("Login successfully");
-          navigate("/Employee");
-        } else {
-          setStatus(false);
-          setMessage("*Login failed");
-        }
+      if (emailValue === posts[i].email) {
+        exists = true;
+        console.log(emailValue);
+        break;
       }
+    }
+    if (exists === true) {
+      setMessage("*Email is exists");
+    } else if (passwordValue !== repasswordValue) {
+      setStatus(false);
+      setMessage("Repassword is not match");
+    } else {
+      axios
+        .post("http://127.0.0.1:5000/add", data_test)
+        .then(function (respone) {
+          console.log(respone);
+        })
+        .catch((error) => console.log(error));
+      setStatus(true);
+      setMessage("Register Successful");
+      navigate("/");
     }
   };
   return (
     <div className="login-form">
-      <div className="title">SIGN IN</div>
+      <div className="title">REGISTER</div>
       <form onSubmit={submitHandler}>
         <div className="input-container">
           <label htmlFor="email">
@@ -58,7 +76,7 @@ function LoginForm() {
             <br />
           </label>
           <input
-            required="required" 
+            required="required"
             type="email"
             value={email}
             onChange={(text) => setEmail(text.target.value)}
@@ -68,18 +86,31 @@ function LoginForm() {
             <br />
           </label>
           <input
-            required="required" 
+            required="required"
             type="password"
             value={password}
             onChange={(text) => setPassword(text.target.value)}
           />
+
+          <label htmlFor="password">
+            Re-Password
+            <br />
+          </label>
+          <input
+            required="required"
+            type="password"
+            value={repassword}
+            onChange={(text) => setRePassword(text.target.value)}
+          />
         </div>
 
         <div className="button-container">
-          <button className="button">LOGIN</button>
+          <button className="button">Sign Up</button>
         </div>
         <div>
-          <a className='a' href="/Register">Resgister</a>
+          <a className="a" href="/">
+            Back Login
+          </a>
         </div>
       </form>
       {status === true ? (
@@ -91,4 +122,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default RegisterForm;

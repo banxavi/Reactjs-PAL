@@ -7,9 +7,9 @@ input[type="password"] {
 .button {
   margin-top: 10px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 13px;
   background: #01d28e;
-  border: 2px solid #01d28e;
+  border: 1px solid #01d28e;
   color: #fff;
   padding: 10px 20px;
 }
@@ -21,6 +21,11 @@ input[type="password"] {
 .button-container {
   display: flex;
   justify-content: center;
+}
+
+.a{
+  justify-content: center;
+  padding-left: 170px;
 }
 
 .login-form {
