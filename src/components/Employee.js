@@ -22,6 +22,7 @@ export default function Employee() {
     return (
         
         <div className='Employee'>
+        <a className='logout' href={"/"}>LOGOUT</a>
          <h1 className='title'>EMPLOYEE TABLE</h1>
          <a href={"home"}>ADD EMPLOYEE</a>
              <table >
@@ -41,7 +42,7 @@ export default function Employee() {
                     <tbody>
                     <tr  key={index}> 
                     <td >{posts.id}</td>
-                    <td ><img src={posts.image} alt={""} /></td>
+                    <td ><img src={posts.image} alt={"images"} /></td>
                     <td >{posts.name}</td>
                     <td >{posts.email}</td>
                     <td >{posts.phone}</td>

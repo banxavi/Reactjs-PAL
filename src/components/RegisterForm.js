@@ -4,9 +4,13 @@ import axios from "axios";
 
 function RegisterForm() {
   const navigate = useNavigate();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRePassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [image, setImage] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -26,11 +30,12 @@ function RegisterForm() {
   }, []);
 
   const data_test = {
-    address: "Newyork, USA",
+    address: address,
     email: email,
-    name: "nhatban",
+    name: name,
     password: password,
-    phone: "1234567890",
+    phone: phone,
+    image: image,
   };
 
   const submitHandler = (event) => {
@@ -71,6 +76,17 @@ function RegisterForm() {
       <div className="title">REGISTER</div>
       <form onSubmit={submitHandler}>
         <div className="input-container">
+          <label htmlFor="Name">
+            Name
+            <br />
+          </label>
+          <input
+            required="required"
+            type="text"
+            value={name}
+            onChange={(text) => setName(text.target.value)}
+          />
+
           <label htmlFor="email">
             Email
             <br />
@@ -92,7 +108,7 @@ function RegisterForm() {
             onChange={(text) => setPassword(text.target.value)}
           />
 
-          <label htmlFor="password">
+          <label htmlFor="repassword">
             Re-Password
             <br />
           </label>
@@ -101,6 +117,36 @@ function RegisterForm() {
             type="password"
             value={repassword}
             onChange={(text) => setRePassword(text.target.value)}
+          />
+          <label htmlFor="address">
+            Address
+            <br />
+          </label>
+          <input
+            required="required"
+            type="text"
+            value={address}
+            onChange={(text) => setAddress(text.target.value)}
+          />
+          <label htmlFor="phone">
+            Phone
+            <br />
+          </label>
+          <input
+            required="required"
+            type="number"
+            value={phone}
+            onChange={(text) => setPhone(text.target.value)}
+          />
+          <label htmlFor="image">
+            Image
+            <br />
+          </label>
+          <input
+            required="required"
+            type="file"
+            value={image}
+            onChange={(text) => setImage(text.target.value)}
           />
         </div>
 
