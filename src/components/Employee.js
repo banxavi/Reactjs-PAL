@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Employee.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Employee() {
+    const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
+    const [status, setStatus] = useState(false);
 
     const axiosPost = async () => {
         axios.get("http://127.0.0.1:5000/emp")
@@ -17,8 +20,19 @@ export default function Employee() {
       useEffect(() => {
         axiosPost();
       }, []);
+      
  
-    
+      const onDelete = (id) => {
+        axios
+        .delete(`http://127.0.0.1:5000/delete/${id}`)
+        .then(function (respone) {
+          console.log(respone);
+          setStatus("Delete Successful")
+          navigate("/Employee");
+        })
+        .catch((error) => console.log(error));
+    }
+
     return (
         
         <div className='Employee'>
@@ -47,12 +61,13 @@ export default function Employee() {
                     <td >{posts.email}</td>
                     <td >{posts.phone}</td>
                     <td >{posts.address}</td>
-                    <td ><button >VIEW</button> <button >EDIT</button><button >DELETE</button></td >
+                    <td ><button>VIEW</button> <button >EDIT</button><button onClick={()=>onDelete(posts.id)}>DELETE</button></td >
                     </tr>
                     </tbody>
-             
             )})}
+                    <p style={{ color: "green" }}>{status}</p>
             </table>
+
         </div>
     )
-}
+                }
