@@ -10,7 +10,7 @@ function LoginForm() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
   const [posts, setPosts] = useState([]);
-  const axiosPost = async () => {
+  const axiosLogin = async () => {
     axios.get("http://127.0.0.1:5000/login")
       .then(res => {
         const account = res.data;
@@ -20,7 +20,7 @@ function LoginForm() {
   };
 
   useEffect(() => {
-    axiosPost();
+    axiosLogin();
   }, []);
 
   const submitHandler = (event) => {

@@ -15,7 +15,7 @@ function RegisterForm() {
   const [status, setStatus] = useState(false);
   const [posts, setPosts] = useState([]);
 
-  const axiosPost = async () => {
+  const axiosGet = async () => {
     axios
       .get("http://127.0.0.1:5000/emp")
       .then((res) => {
@@ -24,12 +24,12 @@ function RegisterForm() {
       })
       .catch((error) => console.log(error));
   };
-  console.log(posts);
+
   useEffect(() => {
-    axiosPost();
+    axiosGet();
   }, []);
 
-  const data_test = {
+  const data_add = {
     address: address,
     email: email,
     name: name,
@@ -61,14 +61,14 @@ function RegisterForm() {
       setMessage("Repassword is not match");
     } else {
       axios
-        .post("http://127.0.0.1:5000/add", data_test)
+        .post("http://127.0.0.1:5000/add", data_add)
         .then(function (respone) {
           console.log(respone);
+          setStatus(true);
+          setMessage("Register Successful");
+          navigate("/");
         })
         .catch((error) => console.log(error));
-      setStatus(true);
-      setMessage("Register Successful");
-      navigate("/");
     }
   };
   return (
