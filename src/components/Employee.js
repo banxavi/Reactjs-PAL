@@ -3,6 +3,7 @@ import "./Employee.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import ModalAdd from './ModalAdd';
 
 export default function Employee() {
   const navigate = useNavigate();
@@ -58,12 +59,14 @@ export default function Employee() {
 
   return (
     <div className="Employee">
-
+      
       <a className="logout" href={"/"}>
-        LOGOUT
+        Logout
       </a>
       <h1 className="title">EMPLOYEE TABLE</h1>
-      <a href={"home"}>ADD EMPLOYEE</a>
+      <div className="addemployee">
+        <ModalAdd/>
+        </div>
       <table>
         <thead>
           <tr>
