@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./Employee.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import ModalAdd from './ModalAdd';
+import ModalEdit from './ModalEdit';
+import ModalDelete from './ModalDelete';
+import ModalSearch from './ModalSearch'
+import MenuLeft from "./MenuLeft";
 
 export default function Employee() {
-  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
-  const [messages, setMessages] = useState("");
+  const [isReload, setIsReload] = useState(false);
+  const [search, setSearch] = useState("");
 
   const axiosGet = async () => {
     axios
@@ -20,53 +22,42 @@ export default function Employee() {
       .catch((error) => console.log(error));
   };
 
+  const onSearch = () => {
+    axios
+      .get(`http://127.0.0.1:5000/emp/${search}`)
+      .then(function (respone) {
+        console.log(respone);
+        const info_search = respone.data;
+        setPosts(info_search);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const pull_data = (data) => {
+    setSearch(data)     // LOGS DATA FROM CHILD
+  }
+
   useEffect(() => {
-    axiosGet();
-  }, []);
+      axiosGet();
+  }, [isReload]);
 
-  const onDelete = (id) => {
-    let choose = window.confirm("Are you sure you want delete employee with: " +id+ "?");
-    if (choose) {
-      axios
-        .delete(`http://127.0.0.1:5000/delete/${id}`)
-        .then(function (respone) {
-          console.log(respone);
-          setMessages("Delete Successful");
-          navigate("/Employee");
-        })
-        .catch((error) => console.log(error));
-    }
-  };
-
-  const data_edit = {
-    address: 'address An Ninh Tay',
-    email: 'email Tuy An',
-    name: "Nhat ban",
-    phone: 'phone',
-    image: 'image',
-  };
-
-  const onEdit = (id) => {
-      axios
-        .put(`http://127.0.0.1:5000/update/${id}`, data_edit)
-        .then(function (respone) {
-          console.log(respone);
-          setMessages("Updated Successful");
-          navigate("/Employee");
-        })
-        .catch((error) => console.log(error));
-  };
+  const superReload = () => {
+      setIsReload(!isReload)
+  }
 
   return (
     <div className="Employee">
-      
-      <a className="logout" href={"/"}>
-        Logout
-      </a>
+     <div style={{marginTop: "150px",marginRight: "50px", width: "230px", height: "600px"}}>
+      <MenuLeft/>
+      </div>
+      <div>
       <h1 className="title">EMPLOYEE TABLE</h1>
       <div className="addemployee">
-        <ModalAdd/>
+        <ModalAdd superReload={superReload}/>
         </div>
+      <div className="searchemployee">
+      <ModalSearch info_search={pull_data} onSearch={onSearch}/>
+      </div>
       <table>
         <thead>
           <tr>
@@ -80,7 +71,7 @@ export default function Employee() {
         </thead>
         {posts.map((posts, index) => {
           return (
-            <tbody>
+            <tbody key={index}>
               <tr key={index}>
                 <td>{posts.name}</td>
                 <td>
@@ -90,16 +81,15 @@ export default function Employee() {
                 <td>{posts.phone}</td>
                 <td>{posts.address}</td>
                 <td>
-                  <Button variant="outline-info">VIEW</Button>
-                  <Button variant="outline-warning" onClick={() => onEdit(posts.id)}>EDIT</Button>
-                  <Button variant="outline-danger" onClick={() => onDelete(posts.id)}>DELETE</Button>
+                  <ModalEdit postId={posts.id} superReload={superReload}></ModalEdit>
+                  <ModalDelete postId={posts.id}  superReload={superReload}></ModalDelete>
                 </td>
               </tr>
             </tbody>
           );
         })}
       </table>
-      <p style={{ color: "green" }}>{messages}</p>
+      </div>
     </div>
   );
 }

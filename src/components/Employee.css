@@ -6,7 +6,7 @@
   border: 3px solid #ddd;
   width: 100%;
   background:  no-repeat fixed center; 
-
+  display: flex;
 }
   
 table {
@@ -44,11 +44,20 @@ title {
 
 .Employee td, .Employee th {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 10px;
 }
 
 .addemployee {
-  padding-left: 800px;
+  padding-right: 840px;
+  padding-bottom: 10px;
+}
+
+.searchemployee {
+  padding-left: 600px;
+}
+
+.searchbtn{
+  padding-right: 20px;
 }
 
 .logout{

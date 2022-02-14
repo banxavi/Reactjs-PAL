@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
-export default function ModalAdd() {
+export default function ModalAdd(props) {
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -63,9 +64,9 @@ export default function ModalAdd() {
         setStatus(true);
         setMessage("Add Successful");
         setShow(false);
+        props.superReload()
       })
       .catch((error) => console.log(error));
-      setMessage("Please check again your input! Something went wrong");
     }
   };
 
