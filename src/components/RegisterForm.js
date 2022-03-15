@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import UploadAndDisplayImage from "./UploadAndDisplayImage";
 function RegisterForm() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -10,11 +10,10 @@ function RegisterForm() {
   const [repassword, setRePassword] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-  const [image, setImage] = useState("");
+  const [uploadImage, setUploadImage] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
   const [posts, setPosts] = useState([]);
-
   const axiosGet = async () => {
     axios
       .get("http://127.0.0.1:5000/emp")
@@ -29,19 +28,22 @@ function RegisterForm() {
     axiosGet();
   }, []);
 
+  const upload_image = (images) =>{
+    setUploadImage(images)
+  }
   const data_add = {
     address: address,
     email: email,
     name: name,
     password: password,
     phone: phone,
-    image: image,
+    image: uploadImage,
   };
 
   const submitHandler = (event) => {
     //Prevent page reload
     event.preventDefault();
-
+    
     let emailValue = email;
     let passwordValue = password;
     let repasswordValue = repassword;
@@ -138,16 +140,7 @@ function RegisterForm() {
             value={phone}
             onChange={(text) => setPhone(text.target.value)}
           />
-          <label htmlFor="image">
-            Image
-            <br />
-          </label>
-          <input
-            required="required"
-            type="file"
-            value={image}
-            onChange={(text) => setImage(text.target.value)}
-          />
+        <UploadAndDisplayImage upload_image={upload_image}/>
         </div>
 
         <div className="button-container">

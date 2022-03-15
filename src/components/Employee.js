@@ -22,7 +22,7 @@ export default function Employee() {
       .catch((error) => console.log(error));
   };
 
-  const onSearch = () => {
+  const onSearch = async () => {
     axios
       .get(`http://127.0.0.1:5000/emp/${search}`)
       .then(function (respone) {
@@ -82,7 +82,7 @@ export default function Employee() {
                 <td>{posts.address}</td>
                 <td>
                   <ModalEdit postId={posts.id} superReload={superReload}></ModalEdit>
-                  <ModalDelete postId={posts.id}  superReload={superReload}></ModalDelete>
+                  <ModalDelete postId={posts.id} postEmail={posts.email}  superReload={superReload}></ModalDelete>
                 </td>
               </tr>
             </tbody>
