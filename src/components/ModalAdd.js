@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
+import UploadAndDisplayImage from "./UploadAndDisplayImage";
 
 export default function ModalAdd(props) {
   
@@ -8,7 +9,7 @@ export default function ModalAdd(props) {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-  const [image, setImage] = useState("");
+  const [images, setUploadImage] = useState("");
 
   const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
@@ -38,9 +39,13 @@ export default function ModalAdd(props) {
     name: name,
     password: "123456",
     phone: phone,
-    image: image,
+    image: images,
   };
-
+  
+  const upload_image = (images) =>{
+    console.log("cha", images)
+    setUploadImage(images)
+  }
   const submitAdd = () => {
     let emailValue = email;
     let exists = false;
@@ -104,12 +109,7 @@ export default function ModalAdd(props) {
             </label>
             <input required="required" type="number" value={phone}
             onChange={(text) => setPhone(text.target.value)} />
-            <label>
-              Image
-              <br />
-            </label>
-            <input required="required" type="file" value={image}
-            onChange={(text) => setImage(text.target.value)}/>
+              <UploadAndDisplayImage upload_image={upload_image}/>
           </div>
           {status === true ? (
         <p style={{ color: "green" }}>{message}</p>

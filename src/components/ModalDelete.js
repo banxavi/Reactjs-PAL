@@ -31,12 +31,12 @@ export default function ModalDelete(props) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Are you sure you want to delete employee with ID: {postId['postId']}? </Modal.Title>
+          <Modal.Title>Do you want to delete employee: <h4 style={{color:'red'}}>{postId['postEmail']}</h4>  </Modal.Title>
         </Modal.Header>
        
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            CLOSE
           </Button>
           <Button variant="danger" onClick={() => onDelete(props)}>
             DELETE
