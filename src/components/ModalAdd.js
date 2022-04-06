@@ -10,16 +10,14 @@ export default function ModalAdd(props) {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [images, setUploadImage] = useState("");
-
   const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
-
   const [show, setShow] = useState(false);
-
+  const [selectValue, setSelectValue] = useState("DEVELOPER")
   const [posts, setPosts] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const selectedOption = ['DEVELOPER', 'TESTER', 'TEAMLEAD', 'SME', 'PM', 'DIRECTOR'];
   const axiosGet = async () => {
     axios
       .get("http://127.0.0.1:5000/emp")
@@ -39,11 +37,11 @@ export default function ModalAdd(props) {
     name: name,
     password: "123456",
     phone: phone,
-    image: images,
+    position: selectValue,
+    image: images
   };
   
   const upload_image = (images) =>{
-    console.log("cha", images)
     setUploadImage(images)
   }
   const submitAdd = () => {
@@ -75,6 +73,11 @@ export default function ModalAdd(props) {
     }
   };
 
+    const handleAddrTypeChange = (e) =>{
+    setSelectValue(selectedOption[e.target.value])
+  } 
+
+  
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -97,6 +100,18 @@ export default function ModalAdd(props) {
             </label>
             <input required="required" type="email"   value={email}
             onChange={(text) => setEmail(text.target.value)} />
+          <label>
+              Position
+              <br />
+            </label>
+            <select 
+             id='select_pst'
+             onChange={e => handleAddrTypeChange(e)}> 
+              {selectedOption.map((o, key) => (
+                          <option key={key} value={key}>{o}</option>
+              ))}
+              
+            </select>
             <label>
               Address
               <br />

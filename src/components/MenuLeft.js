@@ -69,7 +69,6 @@ export default class MenuLeft extends React.Component {
             <Menu.Item key="5">Zimbra</Menu.Item>
             <Menu.Item key="6">Gmail</Menu.Item>
             <Menu.Item key="7">OutLook</Menu.Item>
-            <Menu.Item key="8">Instagram</Menu.Item>
           </SubMenu>
           <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Account">
             <Menu.Item key="9">Help</Menu.Item>
