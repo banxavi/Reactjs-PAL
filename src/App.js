@@ -16,10 +16,11 @@ function App() {
         <Route path="/Register" element={<RegisterForm/>}/>
         <Route path="/Home" element={<Home/>} />
         <Route path="/Employee" element={<Employee/>} />
+
+
       </Routes>
     </div>
   );
 }
-
 
 export default App;

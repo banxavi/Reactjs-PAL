@@ -7,10 +7,12 @@ export default function ModalEdit(props) {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
+  const [position, setPosition] = useState("");
 
   const [show, setShow] = useState(false);
 
   const [posts, setPosts] = useState([]);
+
   const handleClose = () => setShow(false);
 
   useEffect(() => {
@@ -35,7 +37,8 @@ export default function ModalEdit(props) {
   const data_edit = {
     name: name || posts.name,
     address: address || posts.address,
-    phone: phone || posts.phone
+    phone: phone || posts.phone,
+    position: position || posts.position
   };
 
   const submitEdit = () => {
@@ -49,7 +52,6 @@ export default function ModalEdit(props) {
       })
       .catch((error) => console.log(error));
   };
-
   return (
     <>
       <Button variant="outline-warning" onClick={handleShow}>
@@ -71,6 +73,18 @@ export default function ModalEdit(props) {
               <br />
             </label>
             <input readOnly type="email" value={posts.email} />
+              <label>
+              Position
+              <br />
+            </label>
+            <select 
+             id='select_pst'
+             readOnly='true'
+            > 
+                <option value={posts.position}>{posts.position}</option>
+              ))
+              
+            </select>
             <label>
               Address
               <br />
@@ -83,7 +97,6 @@ export default function ModalEdit(props) {
             </label>
             <input required="required" type="number" defaultValue={posts.phone || ""}
             onChange={(text) => setPhone(text.target.value)} />
-           
           </div> 
   
         </Modal.Body>
