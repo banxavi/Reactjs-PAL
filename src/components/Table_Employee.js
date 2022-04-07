@@ -110,7 +110,7 @@ else{
       <ModalSearch info_search={pull_data} onSearch={onSearch}/>
       </div>
       <Table loading={loading} columns={columns} dataSource={posts}
-        pagination={{defaultPageSize:8}}
+        pagination={{defaultPageSize:7}}
       />
       </div>
   );}

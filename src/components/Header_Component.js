@@ -11,6 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const pages = ['Employee', 'Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -19,6 +20,7 @@ const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [navMenu, setNavMenu] = React.useState("")
+  const [settings_nav, setSettings] = React.useState("");
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -26,7 +28,6 @@ const ResponsiveAppBar = () => {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-
   const handleDirectNavMenu = (event) => {
     setNavMenu(event.target.value)
   };
@@ -42,10 +43,19 @@ const ResponsiveAppBar = () => {
     else if (navMenu==='Blog'){
         window.location.href = "/Blog";
 }
-  console.log(navMenu)
+ 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+
   };
+
+  const handleSelectItem = (event) => {
+    setSettings(event.target.innerText)
+  }
+
+  if (settings_nav==='Logout'){
+    window.location.href = "/";
+    }
 
   return (
     <AppBar position="static">
@@ -119,7 +129,8 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="https://cdn.chanhtuoi.com/uploads/2020/05/icon-facebook-08-2.jpg.webp" />
+                <SettingsIcon/>
+                {/* <Avatar alt="Remy Sharp" src="https://cdn.chanhtuoi.com/uploads/2020/05/icon-facebook-08-2.jpg.webp" /> */}
               </IconButton>
             </Tooltip>
             <Menu
@@ -139,8 +150,8 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting} value={setting}  onClick={handleSelectItem}>
+                  {setting}
                 </MenuItem>
               ))}
             </Menu>
