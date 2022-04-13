@@ -25,6 +25,7 @@ input{
 .a{
   justify-content: center;
   padding-left: 220px;
+
 }
 
 .login-form {
@@ -51,7 +52,7 @@ input{
   font-size: 35px;
   margin-bottom: 20px;
   text-align: center;
-  color: #01d240;
+  color: darkturquoise;
   text-shadow: 2px 2px 2px #14a183;
 
 }
