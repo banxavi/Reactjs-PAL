@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import UploadAndDisplayImage from "./UploadAndDisplayImage";
+import UploadAndDisplayImage from "../Common/UploadAndDisplayImage";
 function RegisterForm() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -75,7 +75,7 @@ function RegisterForm() {
   };
   return (
     <div className="login-form">
-      <div className="title">REGISTER</div>
+      <div className="title" styles={{color: 'darkturquoise'}}>REGISTER</div>
       <form onSubmit={submitHandler}>
         <div className="input-container">
           <label htmlFor="Name">
@@ -144,7 +144,7 @@ function RegisterForm() {
         </div>
 
         <div className="button-container">
-          <button className="button">Sign Up</button>
+        <button style={{color: 'darkturquoise', background: '#ffffff', border: '1px solid', fontSize: '20px', borderRadius:'10%'}}>SIGN UP</button>
         </div>
         <div>
           <a className="a" href="/">

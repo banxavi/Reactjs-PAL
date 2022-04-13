@@ -7,13 +7,12 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-const pages = ['Employee', 'Products', 'Pricing', 'Blog'];
+const pages = ['Employee', 'Benefit', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -32,10 +31,10 @@ const ResponsiveAppBar = () => {
     setNavMenu(event.target.value)
   };
     if (navMenu==='Employee'){
-    window.location.href = "/Employee";
+    window.location.href = "/employee";
     }
-    if (navMenu==='Products'){
-    window.location.href = "/Products";
+    if (navMenu==='Benefit'){
+    window.location.href = "/benefit";
     }
     else if (navMenu==='Pricing'){
         window.location.href = "/Pricing";
@@ -43,7 +42,7 @@ const ResponsiveAppBar = () => {
     else if (navMenu==='Blog'){
         window.location.href = "/Blog";
 }
- 
+  
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
 

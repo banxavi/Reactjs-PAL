@@ -40,7 +40,7 @@ function LoginForm() {
         ) {
           setStatus(true);
           setMessage("Login successfully");
-          navigate("/Employee");
+          navigate("/employee");
         } else {
           setStatus(false);
           setMessage("*Login failed");
@@ -50,7 +50,7 @@ function LoginForm() {
   };
   return (
     <div className="login-form">
-      <div className="title">SIGN IN</div>
+      <div className="title" style={{  color: 'darkturquoise'}}>SIGN IN</div>
       <form onSubmit={submitHandler}>
         <div className="input-container">
           <label htmlFor="email">
@@ -76,7 +76,7 @@ function LoginForm() {
         </div>
 
         <div className="button-container">
-          <button className="button">LOGIN</button>
+          <button style={{color: 'darkturquoise', background: '#ffffff', border: '1px solid', fontSize: '20px', borderRadius:'10%'}}>LOGIN</button>
         </div>
         <div>
           <a className='a' href="/Register">Resgister</a>

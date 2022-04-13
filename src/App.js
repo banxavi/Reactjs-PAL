@@ -1,10 +1,11 @@
-import './App.css';
-import './styles.css';
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
+import './assets/styles/App.css'
+import './assets/styles/styles.css';
+import './assets/styles/Employee.css';
+
+import LoginForm from './components/Login/LoginForm';
+import RegisterForm from './components/Register/RegisterForm';
 import { Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Employee from './components/Employee';
+import Employee from './components/Employees/Employee';
 import Benefit from './components/Benefits/Benefit'
 import React from 'react';
 
@@ -15,10 +16,9 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="/Register" element={<RegisterForm/>}/>
-        <Route path="/Home" element={<Home/>} />
-        <Route path="/Employee" element={<Employee/>} />
-        <Route path="/Products" element={<Benefit/>} />
-
+        <Route path="/employee" element={<Employee/>} />
+        <Route path="/benefit" element={<Benefit/>} />
+        
       </Routes>
     </div>
   );

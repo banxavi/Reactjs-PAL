@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import UploadAndDisplayImage from "./UploadAndDisplayImage";
+import { SERVER } from "../API/api_url";
 
 export default function ModalAdd(props) {
   
@@ -20,7 +21,7 @@ export default function ModalAdd(props) {
   const selectedOption = ['DEVELOPER', 'TESTER', 'TEAMLEAD', 'SME', 'PM', 'DIRECTOR'];
   const axiosGet = async () => {
     axios
-      .get("http://127.0.0.1:5000/emp")
+      .get(`${SERVER}/emp`)
       .then((res) => {
         const account = res.data;
         setPosts(account);
@@ -61,7 +62,7 @@ export default function ModalAdd(props) {
     }
     else{
     axios
-      .post("http://127.0.0.1:5000/add", data_add)
+      .post(`${SERVER}/add`, data_add)
       .then(function (respone) {
         console.log(respone);
         setStatus(true);
