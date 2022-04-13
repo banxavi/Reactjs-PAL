@@ -42,7 +42,7 @@ function LoginForm() {
           setMessage("Login successfully");
           navigate("/employee");
         } else {
-          setStatus(false);
+          setStatus(false); 
           setMessage("*Login failed");
         }
       }
