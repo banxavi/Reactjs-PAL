@@ -22,8 +22,7 @@ export default function ModalEdit(props) {
         axios
           .get(`${SERVER}/employee/edit/${postId['postId']}`)
           .then((res) => {
-            const account = res.data;
-            setPosts(account);
+            setPosts(res.data);
           })
           .catch((error) => console.log(error));
       }

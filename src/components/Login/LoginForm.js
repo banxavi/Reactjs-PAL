@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import {SERVER} from "../API/api_url"
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -10,42 +10,29 @@ function LoginForm() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(false);
   const [posts, setPosts] = useState([]);
+
   const axiosLogin = async () => {
-    axios.get("http://127.0.0.1:5000/login")
+    axios.post(`${SERVER}/checklogin`, {email :email, password: password})
       .then(res => {
-        const account = res.data;
-        setPosts(account);
+        setPosts(res.data);
       })
       .catch(error => console.log(error));
   };
-
-  useEffect(() => {
-    axiosLogin();
-  }, []);
 
   const submitHandler = (event) => {
     //Prevent page reload
     event.preventDefault();
 
-    let emailValue = email;
-    let passwordValue = password;
-    for (var i = 0; i < posts.length; i++) {
-      if (emailValue === "" || passwordValue === "") {
-        setStatus(false);
-        setMessage("*please type into mandatory fields");
-      } else {
-        if (
-          emailValue === posts[i].email &&
-          passwordValue === posts[i].password
-        ) {
-          setStatus(true);
-          setMessage("Login successfully");
-          navigate("/employee");
-        } else {
-          setStatus(false); 
-          setMessage("*Login failed");
-        }
-      }
+    axiosLogin()
+    if (posts?.isUser)
+   {
+      setStatus(true);
+      setMessage("Login successfully");
+      navigate("/employee");
+    }
+    else{
+      setStatus(false); 
+      setMessage("*Login failed");
     }
   };
   return (
@@ -79,13 +66,13 @@ function LoginForm() {
           <button style={{color: 'darkturquoise', background: '#ffffff', border: '1px solid', fontSize: '20px', borderRadius:'10%'}}>LOGIN</button>
         </div>
         <div>
-          <a className='a' href="/Register">Resgister</a>
+          <a style={{paddingLeft: '45%'}} href="/Register">Resgister</a>
         </div>
       </form>
       {status === true ? (
         <p style={{ color: "green" }}>{message}</p>
       ) : (
-        <p style={{ color: "red", textAlign: "left" }}>{message}</p>
+        <p style={{ color: "red", textAlign: "center" }}>{message}</p>
       )}
     </div>
   );

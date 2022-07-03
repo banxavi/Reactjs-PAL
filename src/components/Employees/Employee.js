@@ -20,13 +20,11 @@ export default function Employee() {
     axios
       .get(`${SERVER}/${url_api}`)
       .then((res) => {
-        const employee = res.data;
-        setPosts(employee);
+        setPosts(res.data);
 
       })
       .catch((error) => console.log(error));
   };
-
   useEffect(() => {
       axiosGet();
       console.log(posts)

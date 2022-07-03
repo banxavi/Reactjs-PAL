@@ -26,8 +26,7 @@ export default function ModalEdit_Benefit(props) {
         axios
           .get(`${SERVER}/benefit/edit/${postId['postId']}`)
           .then((res) => {
-            const account = res.data;
-            setPosts(account);
+            setPosts(res.data);
           })
           .catch((error) => console.log(error));
       }

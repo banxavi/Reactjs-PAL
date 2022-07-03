@@ -23,8 +23,7 @@ export default function ModalAdd(props) {
     axios
       .get(`${SERVER}/emp`)
       .then((res) => {
-        const account = res.data;
-        setPosts(account);
+        setPosts(res.data);
       })
       .catch((error) => console.log(error));
   };
