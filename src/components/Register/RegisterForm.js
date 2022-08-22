@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import UploadAndDisplayImage from "./UploadAndDisplayImage";
+import UploadAndDisplayImage from "../Common/UploadAndDisplayImage";
+import { SERVER } from "../API/api_url";
+
 function RegisterForm() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -16,14 +18,12 @@ function RegisterForm() {
   const [posts, setPosts] = useState([]);
   const axiosGet = async () => {
     axios
-      .get("http://127.0.0.1:5000/emp")
+      .get(`${SERVER}/employee`)
       .then((res) => {
-        const account = res.data;
-        setPosts(account);
+        setPosts(res.data);
       })
       .catch((error) => console.log(error));
   };
-
   useEffect(() => {
     axiosGet();
   }, []);
@@ -35,6 +35,7 @@ function RegisterForm() {
     address: address,
     email: email,
     name: name,
+    position: 'Developer',
     password: password,
     phone: phone,
     image: uploadImage,
@@ -47,15 +48,19 @@ function RegisterForm() {
     let emailValue = email;
     let passwordValue = password;
     let repasswordValue = repassword;
-    let exists = false;
+    // let exists = false;
 
-    for (var i = 0; i < posts.length; i++) {
-      if (emailValue === posts[i].email) {
-        exists = true;
-        console.log(emailValue);
-        break;
-      }
-    }
+    // for (var i = 0; i < posts.length; i++) {
+    //   if (emailValue === posts[i].email) {
+    //     exists = true;
+    //     console.log(emailValue);
+    //     break;
+    //   }
+    // }
+    var exists = posts.some( post => {
+      return post.email === emailValue ;
+    });
+    
     if (exists === true) {
       setMessage("*Email is exists");
     } else if (passwordValue !== repasswordValue) {
@@ -63,7 +68,7 @@ function RegisterForm() {
       setMessage("Repassword is not match");
     } else {
       axios
-        .post("http://127.0.0.1:5000/add", data_add)
+        .post(`${SERVER}/add`, data_add)
         .then(function (respone) {
           console.log(respone);
           setStatus(true);
@@ -75,7 +80,7 @@ function RegisterForm() {
   };
   return (
     <div className="login-form">
-      <div className="title">REGISTER</div>
+      <div className="title" styles={{color: 'darkturquoise'}}>REGISTER</div>
       <form onSubmit={submitHandler}>
         <div className="input-container">
           <label htmlFor="Name">
@@ -144,10 +149,10 @@ function RegisterForm() {
         </div>
 
         <div className="button-container">
-          <button className="button">Sign Up</button>
+        <button style={{color: 'darkturquoise', background: '#ffffff', border: '1px solid', fontSize: '20px', borderRadius:'10%'}}>SIGN UP</button>
         </div>
         <div>
-          <a className="a" href="/">
+          <a style={{paddingLeft: '45%'}} href="/">
             Back Login
           </a>
         </div>

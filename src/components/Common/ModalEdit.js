@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
+import { SERVER } from "../API/api_url";
 
 export default function ModalEdit(props) {
   const postId = props
@@ -19,10 +20,9 @@ export default function ModalEdit(props) {
     if (show){
       const getAxios = async () =>{
         axios
-          .get(`http://127.0.0.1:5000/emp/edit/${postId['postId']}`)
+          .get(`${SERVER}/employee/edit/${postId['postId']}`)
           .then((res) => {
-            const account = res.data;
-            setPosts(account);
+            setPosts(res.data);
           })
           .catch((error) => console.log(error));
       }
@@ -44,9 +44,8 @@ export default function ModalEdit(props) {
   const submitEdit = () => {
 
     axios
-      .put(`http://127.0.0.1:5000/update/${postId['postId']}`, data_edit)
+      .put(`${SERVER}/update/${postId['postId']}`, data_edit)
       .then(function (respone) {
-        console.log(respone);
         setShow(false);
         props.superReload()
       })
@@ -58,7 +57,7 @@ export default function ModalEdit(props) {
       EDIT
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{margin: '100px 0 0 0'}}>
         <Modal.Header closeButton>
           <Modal.Title>Update employee</Modal.Title>
         </Modal.Header>

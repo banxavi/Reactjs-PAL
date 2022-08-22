@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
+import { SERVER } from "../API/api_url";
 
 export default function ModalDelete(props) {
   const postId = props
@@ -9,9 +10,8 @@ export default function ModalDelete(props) {
 
   const onDelete = () => {
       axios
-        .delete(`http://127.0.0.1:5000/delete/${postId['postId']}`)
+        .delete(`${SERVER}/delete/${postId['postId']}`)
         .then(function (respone) {
-          console.log(respone);
           setShow(false);
           props.superReload()
         })
@@ -29,7 +29,7 @@ export default function ModalDelete(props) {
       DELETE
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{margin: '100px 0 0 0'}}>
         <Modal.Header closeButton>
           <Modal.Title>Do you want to delete employee: <h4 style={{color:'red'}}>{postId['postEmail']}</h4>  </Modal.Title>
         </Modal.Header>
