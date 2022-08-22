@@ -33,9 +33,10 @@ img {
   height:50px;
 }
 
-title {
+.title {
   text-align: center;
-  font-family: arial, sans-serif;
+  font-family: arial, sans-serif;  
+
 }
 
 /* .Employee tr:nth-child(even){background-color: black;} */
@@ -48,6 +49,7 @@ title {
 }
 
 .addemployee {
+  padding-top: 10px;
   padding-right: 840px;
   padding-bottom: 10px;
 }

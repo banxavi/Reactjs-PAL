@@ -27,7 +27,6 @@ export default function Employee() {
   };
   useEffect(() => {
       axiosGet();
-      console.log(posts)
   }, [isReload]);
 
   const superReload = () => {
@@ -41,8 +40,10 @@ export default function Employee() {
      <div style={{marginTop: "150px",marginRight: "50px", width: "230px", height: "600px"}}>
       </div>
       <div>
-      <h1 className="title" style={{  color: 'darkturquoise'}}>EMPLOYEE TABLE</h1>
+      <h1 className="title" style={{  color: 'darkturquoise', marginTop: '70px'}}>EMPLOYEE TABLE</h1>
+
       <div className="addemployee">
+
         <ModalAdd superReload={superReload}/>
         </div>
       <Table_Employee url_api={url_api}  superReload={superReload}/>

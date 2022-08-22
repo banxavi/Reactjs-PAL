@@ -147,10 +147,6 @@ export default function Table_Employee(props) {
     },
   ];
 
-  function onChange(pagination, filters, sorter, extra) {
-    console.log('params', pagination, filters, sorter, extra);
-  }
-
   const rel = props
 
   const axiosGet = async () => {
@@ -159,7 +155,6 @@ export default function Table_Employee(props) {
       .get(`${SERVER}/${props.url_api}`)
       .then((res) => {
         setPosts(res.data);
-
       })
       .catch((error) => console.log(error)).finally(() =>{
         setLoading(false)
@@ -174,7 +169,6 @@ const onSearch = async () => {
     axios
     .get(`${url_search}/${search}`)
     .then(function (respone) {
-      console.log(respone);
       setPosts(respone.data);
     })
     .catch((error) => console.log(error));
@@ -228,10 +222,12 @@ else{
   return (
     <div>
     <div className="searchemployee">
-      <ModalSearch info_search={pull_data} onSearch={onSearch}/>
+      {/* <ModalSearch info_search={pull_data} onSearch={onSearch}/> */}
       </div>
-      <Table loading={loading} onChange={onChange} columns={props.url_api==='employee'?columns_employee:columns_benefit} dataSource={posts}
-        pagination={{defaultPageSize:7}}
+      <div style={{position: 'relative', zIndex: 1}}>
+      <Table loading={loading} columns={props.url_api==='employee'?columns_employee:columns_benefit} dataSource={posts}
+        pagination={{defaultPageSize:15}}
       />
+      </div>
       </div>
   );}

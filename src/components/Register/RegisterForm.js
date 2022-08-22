@@ -24,7 +24,6 @@ function RegisterForm() {
       })
       .catch((error) => console.log(error));
   };
-  console.log(posts)
   useEffect(() => {
     axiosGet();
   }, []);

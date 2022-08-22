@@ -5,7 +5,6 @@ import { SERVER } from "../API/api_url";
 
 export default function ModalEdit_Benefit(props) {
   const postId = props
-  console.log(postId)
   const [experiences, setExperiences] = useState("");
   const [insuarance, setInsuarance] = useState("");
   const [lastsalary, setLastSalary] = useState("");
@@ -47,13 +46,11 @@ export default function ModalEdit_Benefit(props) {
     PA_Perform: paperform || posts.PA_Perform,
   };
 
-  console.log(data_edit)
   const submitEdit = () => {
 
     axios
       .put(`${SERVER}/update/benefit/${postId['postId']}`, data_edit)
       .then(function (respone) {
-        console.log(respone);
         setShow(false);
         props.superReload()
       })
@@ -65,7 +62,7 @@ export default function ModalEdit_Benefit(props) {
         EDIT
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{margin: '100px 0 0 0'}}>
         <Modal.Header closeButton>
           <Modal.Title>Update Benefit</Modal.Title>
         </Modal.Header>

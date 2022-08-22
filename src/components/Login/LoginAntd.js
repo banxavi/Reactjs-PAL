@@ -1,56 +1,19 @@
-import React from 'react';
-import { Form , Input, Button, Checkbox } from 'antd';
-import { SmileOutlined } from '@ant-design/icons';
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// import {SERVER} from "../API/api_url"
 
-class NormalLoginForm extends React.PureComponent {
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
-  };
+// export default function API() {
+//   const [posts, setPosts] = useState([]);
 
-  render() {
-
-    return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <Form.Item>
-          
-            <Input
-              prefix={<SmileOutlined  type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
-            />
-       
-        </Form.Item>
-        <Form.Item>
-         
-            <Input
-              prefix={<SmileOutlined  type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              type="password"
-              placeholder="Password"
-            />
-    
-        </Form.Item>
-        <Form.Item>
-       
-          <Checkbox>Remember me</Checkbox>
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-          >
-            Log in
-          </Button>
-          Or <a href="">register now!</a>
-        </Form.Item>
-      </Form>
-    );
-  }
-}
-
-export default NormalLoginForm;
+//   const axiosLogin = async () => {
+//     try {
+//       const url = `https://js-post-api.herokuapp.com/api/products?
+//       _limit=10&_page=1`;
+//       const response = await axios.get(url);
+//         console.log(response);
+//       } catch (error) {
+//       console.log('Failed to fetch products: ', error);
+//       }  
+//   }
+// }

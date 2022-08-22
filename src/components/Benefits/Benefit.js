@@ -13,9 +13,7 @@ export default function Benefit() {
   // localStorage.setItem("employee", jsonPosts)
 
   var a = useLocation();
-  console.log(a)
   var url_api = a?.pathname.split("/").pop();
-  console.log(url_api)
   const axiosGet = async () => {
     axios
       .get(`${SERVER}/${url_api}`)
@@ -47,10 +45,14 @@ export default function Benefit() {
           }}
         ></div>
         <div>
-          <h1 className="title" style={{ color: "darkturquoise" }}>
-            BENEFIT TABLE
-          </h1>
+  
+          <div style={{  paddingRight: '840px',
+  paddingBottom: '20px'}}>
 
+          </div>
+          <h1 className="title" style={{ color: "darkturquoise",  margin: '50px'}}>
+              BENEFIT TABLE
+            </h1>
           <Table_Employee url_api={url_api} superReload={superReload} />
           {/* <Footer></Footer> */}
         </div>

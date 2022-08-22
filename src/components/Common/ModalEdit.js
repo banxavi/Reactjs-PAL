@@ -46,7 +46,6 @@ export default function ModalEdit(props) {
     axios
       .put(`${SERVER}/update/${postId['postId']}`, data_edit)
       .then(function (respone) {
-        console.log(respone);
         setShow(false);
         props.superReload()
       })
@@ -58,7 +57,7 @@ export default function ModalEdit(props) {
       EDIT
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{margin: '100px 0 0 0'}}>
         <Modal.Header closeButton>
           <Modal.Title>Update employee</Modal.Title>
         </Modal.Header>

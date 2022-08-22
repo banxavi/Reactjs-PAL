@@ -11,6 +11,21 @@ function LoginForm() {
   const [status, setStatus] = useState(false);
   const [posts, setPosts] = useState([]);
 
+  const axiosAPI = async () => {
+        try {
+          const url = `https://js-post-api.herokuapp.com/api/products?
+          _limit=10&_page=1`;
+          const response = await axios.get(url);
+            console.log(response);
+            console.log(response.data)
+            console.log(response.data.data)
+            console.log(response.data.data[0].name)
+          } catch (error) {
+          console.log('Failed to fetch products: ', error);
+          }  
+      }
+
+
   const axiosLogin = async () => {
     axios.post(`${SERVER}/checklogin`, {email :email, password: password})
       .then(res => {
@@ -18,7 +33,7 @@ function LoginForm() {
       })
       .catch(error => console.log(error));
   };
-
+  // axiosAPI()
   const submitHandler = (event) => {
     //Prevent page reload
     event.preventDefault();
@@ -37,11 +52,15 @@ function LoginForm() {
   };
   return (
     <div className="login-form">
-      <div className="title" style={{  color: 'darkturquoise'}}>SIGN IN</div>
+      <div className="title" style={{  color: 'darkturquoise', display:'block'}}>SIGN IN
+      </div>
+      <div  style={{textAlign: 'center', marginTop: '5px'}} >
+      <img style={{height: '60px', width: '70px'}} src='https://cdn-icons-png.flaticon.com/512/295/295128.png'></img>
+      </div>
       <form onSubmit={submitHandler}>
         <div className="input-container">
           <label htmlFor="email">
-            Email
+            <span style={{  fontWeight: 'bold'}}>Email</span>
             <br />
           </label>
           <input
@@ -49,16 +68,20 @@ function LoginForm() {
             type="email"
             value={email}
             onChange={(text) => setEmail(text.target.value)}
+            style={{height: '30px'}}
           />
           <label htmlFor="password">
-            Password
+          <span style={{  fontWeight: 'bold'}}>Password</span>
             <br />
           </label>
           <input
+            minLength={6}
             required="required" 
             type="password"
             value={password}
             onChange={(text) => setPassword(text.target.value)}
+            style={{height: '30px'}}
+
           />
         </div>
 
