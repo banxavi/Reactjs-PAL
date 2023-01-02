@@ -9,7 +9,6 @@ import RegisterForm from './components/Register/RegisterForm';
 import { Routes, Route } from 'react-router-dom';
 import Employee from './components/Employees/Employee';
 import Benefit from './components/Benefits/Benefit'
-import SuggestSearch from './Test/SuggestSearch';
 import React from 'react';
 import RegisterForm1 from './components/Register/RegisterForm1';
 
@@ -22,9 +21,6 @@ function App() {
         <Route path="/register" element={<RegisterForm1/>}/>
         <Route path="/employee" element={<Employee/>} />
         <Route path="/benefit" element={<Benefit/>} />
-        <Route path='/suggestsearch' element={<SuggestSearch/>}/>
-
-        
       </Routes>
     </div>
   );

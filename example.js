@@ -60,7 +60,7 @@ const courses1 = ["Javascript", "Python", "Golang", "Kotlin", "Python"];
 const course2 = [100, 200, 300];
 
 // Spead operator
-course3 = [...courses1, ...course2];
+const course3 = [...courses1, ...course2];
 // console.log(course3);
 
 const adventurer = {
