@@ -216,3 +216,5 @@ Intern.sayHi = sayHi;
 
 Manager.sayHi(); // Hello, my name is John'
 Intern.sayHi(); // Hello, my name is Ben'
+
+// Check commit
